@@ -3,7 +3,7 @@
 ```shell
 cd ~
 git clone https://github.com/jantar1154/dotfiles
-mv dotfiles/.* .
+mv dotfiles/df/* .
 rm -rf dotfiles
 ```
 

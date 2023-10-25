@@ -17,12 +17,12 @@ rst=$(tput sgr0);
 bld=$(tput bold);
 
 # PS1 config
-PS1='\n\[${bld}\]';
-PS1+='\[${blu}\u\]';		# username
-PS1+='\[${rst}${bld}@\]';		# at symbol
-PS1+='\[${blu}\h \]';		# hostname
-PS1+='\[${grn}\w';		# working directory
+PS1='\n\[${bld}';
+PS1+='${blu}\u';		# username
+PS1+='${rst}${bld}@';		# at symbol
+PS1+='${blu}\h ';		# hostname
+PS1+='${grn}\w';		# working directory
 PS1+='\n';
-PS1+='\[${red}>> ${rst}\]';	# >> and reset colour
+PS1+='${red}>> ${rst}\]';	# >> and reset colour
 
 export PS1;

@@ -1,0 +1,55 @@
+general {
+        colors = true
+        interval = 2
+        color_good = "#20FF20"
+	color_degraded = "#FFBB33"
+	color_bad = "#CC0000"
+}
+
+order += "ethernet enp2s0f0"
+order += "wireless wlp3s0"
+order += "battery all"
+order += "cpu_temperature 0"
+order += "memory"
+order += "volume master"
+order += "time"
+
+ethernet enp2s0f0 {
+	format_up = "E: UP (%speed)"
+	format_down = "E: DOWN"
+}
+
+wireless wlp3s0 {
+        format_up = "W: UP (%essid)"
+        format_down = "W: down"
+}
+
+battery all {
+	integer_battery_capacity = "true"
+	last_full_capacity = "true"
+	format = "B: %status %percentage (%remaining)"	
+	status_chr = "⚡CHR"
+	status_full = "☻FULL"
+	status_bat = "DIS"
+	low_threshold = "20"
+	threshold_type = "percentage"
+}
+
+cpu_temperature 0 {
+	format = "T: %degrees°C"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+}
+
+memory {
+	format = "MEM: %percentage_used"
+}
+
+volume master {
+	device = "pulse"
+	format = "VOL: %volume"
+	format_muted = "VOL: MUTE"
+}
+
+time {
+	format = "%d/%-m/%Y %-H:%M"
+}

@@ -1,20 +1,16 @@
-set number
-
-syntax on
-
-set hlsearch
-
+set nocompatible
+set ignorecase
 set tabstop=4
 set softtabstop=4
-set shiftwidth=4
-
-" set tabs to spaces
 set expandtab
-set autoindent
-set fileformat=unix
-set nocompatible
+set number
+set cc=80
 
-set encoding=utf-8
+nnoremap <C-t> :NERDTreeToggle<CR>
+call plug#begin()
 
-" autocomplete ?
-set wildmode=longest,list,full
+Plug 'dracula/vim'
+Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+call plug#end()

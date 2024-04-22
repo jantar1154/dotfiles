@@ -9,12 +9,20 @@ set number
 set cc=80
 colorscheme industry
 
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-n> :tabnew<CR>
-nnoremap <C-m> :tabnext<CR>
-nnoremap <C-b> :tabprevious<CR>
-nnoremap <C-x> :tabclose<CR>
+nnoremap <C-z> :undo<CR>
 
+" NERDMap
+nnoremap <C-CR> :NERDTreeToggle<CR>
+
+" Tabs
+nnoremap tn :tabnew<CR>
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprevious<CR>
+nnoremap tx :tabclose<CR>
+nnoremap t<S-l> :+tabmove<CR>
+nnoremap t<S-h> :-tabmove<CR>
+
+" Coc
 inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
 inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 

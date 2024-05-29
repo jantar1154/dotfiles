@@ -18,6 +18,7 @@ vim.opt.expandtab = true
 
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
+vim.cmd('set relativenumber')
 
 -- NERD Tree
 vim.keymap.set('n', '<F1>', ':NERDTreeToggle<CR>')
@@ -28,10 +29,10 @@ vim.keymap.set('n', '<A-k>', ':tabnew<CR>')
 vim.keymap.set('n', '<A-j>', ':tabclose<CR>')
 vim.keymap.set('n', '<A-h>', ':tabprevious<CR>')
 vim.keymap.set('n', '<A-l>', ':tabnext<CR>')
-vim.keymap.set('n', '<A-S-Left>', ':-tabmove<CR>')
-vim.keymap.set('n', '<A-S-Right>', ':+tabmove<CR>')
+vim.keymap.set('n', '<A-Left>', ':-tabmove<CR>')
+vim.keymap.set('n', '<A-Right>', ':+tabmove<CR>')
 
--- Coc
+-- Coc autocomplete on TAB
 vim.api.nvim_set_keymap("i", "<TAB>", "coc#pum#visible() ? coc#_select_confirm(): '<TAB>'", {noremap = true, silent = true, expr = true})
 
 local Plug = vim.fn['plug#']
@@ -46,11 +47,20 @@ Plug('neoclide/coc.nvim')
 Plug('andweeb/presence.nvim') -- Discord rich presence
 Plug('mg979/vim-visual-multi')
 Plug('windwp/nvim-autopairs') -- Automatic closing brackets
-
+Plug('andrewferrier/wrapping.nvim') -- Better soft wrapping
+Plug('lukas-reineke/indent-blankline.nvim') -- indent lines
 Plug('nvim-lua/plenary.nvim')
-Plug('nvim-tree/nvim-web-devicons')
-Plug('willothy/nvim-cokeline') -- cock line
-
+Plug('tiagovla/tokyodark.nvim')
 vim.call('plug#end')
 
-require('cokeline').setup()
+require('wrapping').setup()
+require('ibl').setup()
+
+-- Set wrapping to soft
+require('wrapping').soft_wrap_mode()
+
+require('tokyodark').opts = {
+    comments = {bold = true},
+}
+
+vim.cmd.colorscheme "tokyodark"

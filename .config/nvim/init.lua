@@ -11,18 +11,15 @@ vim.opt.autowrite = true
 vim.opt.autoread = true
 
 -- Tabs to spaces
-vim.opt.tabstop = 4
+vim.opt.tabstop = 8
 vim.opt.shiftwidth = 4
+vim.opt.smarttab = true
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 vim.cmd('set relativenumber')
-
--- NERD Tree
-vim.keymap.set('n', '<F1>', ':NERDTreeToggle<CR>')
-vim.keymap.set('n', '<C-p>', ':NERDTreeToggle<CR>')
 
 -- tabs
 vim.keymap.set('n', '<A-k>', ':tabnew<CR>')
@@ -40,27 +37,30 @@ local Plug = vim.fn['plug#']
 -- Plug
 vim.call('plug#begin')
 
-Plug('dracula/vim')
 Plug('vim-airline/vim-airline')
-Plug('preservim/nerdtree') -- File selector (F1)
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-telescope/telescope.nvim')
 Plug('neoclide/coc.nvim')
 Plug('andweeb/presence.nvim') -- Discord rich presence
 Plug('mg979/vim-visual-multi')
-Plug('windwp/nvim-autopairs') -- Automatic closing brackets
 Plug('andrewferrier/wrapping.nvim') -- Better soft wrapping
 Plug('lukas-reineke/indent-blankline.nvim') -- indent lines
-Plug('nvim-lua/plenary.nvim')
 Plug('tiagovla/tokyodark.nvim')
+Plug('Raimondi/delimitMate') -- auto closing brackets
+Plug('clangd/coc-clangd')
+
 vim.call('plug#end')
 
 require('wrapping').setup()
 require('ibl').setup()
+require('telescope').setup()
 
 -- Set wrapping to soft
 require('wrapping').soft_wrap_mode()
 
-require('tokyodark').opts = {
-    comments = {bold = true},
-}
+-- Telescope
+-- vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<Space>ff', builtin.find_files, {})
 
 vim.cmd.colorscheme "tokyodark"

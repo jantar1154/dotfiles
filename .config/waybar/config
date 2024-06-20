@@ -1,0 +1,35 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["cpu", "temperature", "battery", "clock"],
+    "hyprland/workspaces": {
+        "format": "{icon} {name}",
+        "format-icons": {
+		"active": " ",
+		"default": " ",
+	},
+    },
+    "hyprland/window": {
+        "max-length": 50,
+        "icon": true,
+    },
+    "cpu": {
+        "interval": 2,
+        "format": "L: {load} {icon}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "interval": 2,
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "design-capacity": true,
+        "full-at": 100,
+    },
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    }
+}

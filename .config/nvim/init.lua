@@ -32,30 +32,42 @@ vim.keymap.set('n', '<A-Right>', ':+tabmove<CR>')
 -- Coc autocomplete on TAB
 vim.api.nvim_set_keymap("i", "<TAB>", "coc#pum#visible() ? coc#_select_confirm(): '<TAB>'", {noremap = true, silent = true, expr = true})
 
-local Plug = vim.fn['plug#']
+-- lazy.nvim init
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Plug
-vim.call('plug#begin')
+local plugins = {
+    'vim-airline/vim-airline',
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    {
+        'neoclide/coc.nvim',
+        branch = 'release',
+    },
+    'andweeb/presence.nvim', -- Discord rich presence
+    'mg979/vim-visual-multi',
+    'andrewferrier/wrapping.nvim',
+    'lukas-reineke/indent-blankline.nvim', -- indent lines
+    'tiagovla/tokyodark.nvim',
+    'Raimondi/delimitMate', -- auto closing brackets
+    'clangd/coc-clangd',
+}
+local opts = {}
 
-Plug('vim-airline/vim-airline')
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim')
-Plug('neoclide/coc.nvim')
-Plug('andweeb/presence.nvim') -- Discord rich presence
-Plug('mg979/vim-visual-multi')
-Plug('andrewferrier/wrapping.nvim') -- Better soft wrapping
-Plug('lukas-reineke/indent-blankline.nvim') -- indent lines
-Plug('tiagovla/tokyodark.nvim')
-Plug('Raimondi/delimitMate') -- auto closing brackets
-Plug('clangd/coc-clangd')
-
-vim.call('plug#end')
-
-require('wrapping').setup()
-require('ibl').setup()
-require('telescope').setup()
+require("lazy").setup(plugins, opts)
 
 -- Set wrapping to soft
+require('wrapping').setup();
 require('wrapping').soft_wrap_mode()
 
 -- Telescope

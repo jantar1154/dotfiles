@@ -6,20 +6,20 @@ general {
 	color_bad = "#CC0000"
 }
 
-order += "ethernet enp2s0f0"
-order += "wireless wlp3s0"
+order += "ethernet enp0s25"
+order += "wireless wlan0j"
 order += "battery all"
 order += "cpu_temperature 0"
 order += "memory"
 order += "volume master"
 order += "time"
 
-ethernet enp2s0f0 {
+ethernet enp0s25 {
 	format_up = "E: UP (%speed)"
 	format_down = "E: DOWN"
 }
 
-wireless wlp3s0 {
+wireless wlan0 {
         format_up = "W: UP (%essid)"
         format_down = "W: down"
 }

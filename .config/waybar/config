@@ -2,17 +2,37 @@
     "layer": "top",
     "modules-left": ["hyprland/workspaces", "hyprland/mode"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["cpu", "temperature", "battery", "clock"],
+    "modules-right": ["tray", "bluetooth", "pulseaudio", "cpu", "temperature", "battery", "clock"],
     "hyprland/workspaces": {
-        "format": "{icon} {name}",
-        "format-icons": {
-		"active": " ",
-		"default": " ",
-	},
+        "format": "{name}",
     },
     "hyprland/window": {
         "max-length": 50,
         "icon": true,
+    },
+
+    "tray": {
+        "spacing": 10,
+    },
+
+    "bluetooth": {
+        "format": "BT",
+        "format-disabled": "",
+        "format-connected": "BT: {device_alias}",
+        "format-connected-battery": "BT: {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "con: [{controller_alias}] / {controller_address}",
+        "tooltip-format-connected": "dev addr: {device_address}",
+    },
+
+    "pulseaudio": {
+        "format": "V: {volume}%",
+    },
+
+    "network": {
+        "interface": "wlp3s0",
+        "format-wifi": "W: {essid} ({signalStrength}%)",
+        "format-ethernet": "E: {ipaddr}",
+        "format-disconnected": "DOWN",
     },
     "cpu": {
         "interval": 2,
@@ -25,11 +45,13 @@
     },
     "battery": {
         "format": "{capacity}% {icon}",
+        "format-full": "FULL {icon}",
         "format-icons": ["", "", "", "", ""],
-        "design-capacity": true,
+        "design-capacity": false,
         "full-at": 100,
     },
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%a %d %H:%M}",
+        "tooltip-format": "{:%c}",
     }
 }

@@ -20,6 +20,8 @@ vim.opt.expandtab = true
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 vim.cmd('set relativenumber')
+vim.cmd('autocmd BufWinEnter * NERDTreeMirror')
+vim.cmd('autocmd VimEnter * NERDTree | wincmd p')
 
 -- tabs
 vim.keymap.set('n', '<A-k>', ':tabnew<CR>')
@@ -28,6 +30,16 @@ vim.keymap.set('n', '<A-h>', ':tabprevious<CR>')
 vim.keymap.set('n', '<A-l>', ':tabnext<CR>')
 vim.keymap.set('n', '<A-Left>', ':-tabmove<CR>')
 vim.keymap.set('n', '<A-Right>', ':+tabmove<CR>')
+
+-- terminal
+-- exit
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+-- open
+vim.keymap.set('n', '<C-t>', ':vsplit<CR><C-w><L>:terminal<CR>10<C-w><')
+
+-- NERDTree
+vim.keymap.set('n', '<C-f>', ':NERDTreeToggle<CR>')
 
 -- Coc autocomplete on TAB
 vim.api.nvim_set_keymap("i", "<TAB>", "coc#pum#visible() ? coc#_select_confirm(): '<TAB>'", {noremap = true, silent = true, expr = true})
@@ -61,6 +73,8 @@ local plugins = {
     'tiagovla/tokyodark.nvim',
     'Raimondi/delimitMate', -- auto closing brackets
     'clangd/coc-clangd',
+    'preservim/nerdtree',
+    'ryanoasis/vim-devicons',
 }
 local opts = {}
 

@@ -1,0 +1,9 @@
+[font]
+normal = { family = "Hermit", style = "Regular" }
+bold = { family = "Hermit", style = "Bold" }
+italic = { family = "Hermit", style = "Italic" }
+bold_italic = { family = "Hermit", style = "BoldItalic" }
+
+[mouse]
+hide_when_typing = true
+

@@ -41,6 +41,9 @@ vim.keymap.set('n', '<C-t>', ':vsplit<CR><C-w><L>:terminal<CR>10<C-w><')
 -- NERDTree
 vim.keymap.set('n', '<C-f>', ':NERDTreeToggle<CR>')
 
+-- Go to definition (Coc)
+vim.keymap.set('n', 'gd', ':call CocActionAsync(\'jumpDefinition\', \'tab drop\')<CR>')
+
 -- Coc autocomplete on TAB
 vim.api.nvim_set_keymap("i", "<TAB>", "coc#pum#visible() ? coc#_select_confirm(): '<TAB>'", {noremap = true, silent = true, expr = true})
 

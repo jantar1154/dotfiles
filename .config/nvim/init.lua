@@ -63,6 +63,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
     'vim-airline/vim-airline',
+    'nvim-treesitter/nvim-treesitter',
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     {
@@ -73,7 +74,7 @@ local plugins = {
     'mg979/vim-visual-multi',
     'andrewferrier/wrapping.nvim',
     'lukas-reineke/indent-blankline.nvim', -- indent lines
-    'tiagovla/tokyodark.nvim',
+    'olimorris/onedarkpro.nvim',
     'Raimondi/delimitMate', -- auto closing brackets
     'clangd/coc-clangd',
     'preservim/nerdtree',
@@ -92,4 +93,4 @@ require('wrapping').soft_wrap_mode()
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Space>ff', builtin.find_files, {})
 
-vim.cmd.colorscheme "tokyodark"
+vim.cmd.colorscheme "onedark_dark"

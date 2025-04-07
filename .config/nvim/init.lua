@@ -79,6 +79,15 @@ local plugins = {
     'clangd/coc-clangd',
     'preservim/nerdtree',
     'ryanoasis/vim-devicons',
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        ---@module 'render-markdown'
+        ---@type render.md.UserConfig
+        opts = {},
+    }
 }
 local opts = {}
 
@@ -87,6 +96,12 @@ require("lazy").setup(plugins, opts)
 -- Set wrapping to soft
 require('wrapping').setup();
 require('wrapping').soft_wrap_mode()
+
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true
+    }
+}
 
 -- Telescope
 -- vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')

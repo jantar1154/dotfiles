@@ -1,0 +1,112 @@
+" Leader keys
+let mapleader = ' '
+let maplocalleader = ' '
+
+" Basic settings
+set number
+set termguicolors
+set colorcolumn=80
+set backspace=2
+set showcmd
+set laststatus=2
+set autowrite
+set autoread
+set relativenumber
+
+" Tabs to spaces
+set tabstop=8
+set shiftwidth=4
+set smarttab
+set shiftround
+set expandtab
+
+" Enable syntax and filetype detection
+syntax enable
+filetype plugin indent on
+
+" Fold method
+set foldmethod=indent
+
+" NERDTree auto commands
+autocmd BufWinEnter * NERDTreeMirror
+autocmd VimEnter * NERDTree | wincmd p
+
+" Tab keymaps
+nnoremap <A-k> :tabnew<CR>
+nnoremap <A-j> :tabclose<CR>
+nnoremap <A-h> :tabprevious<CR>
+nnoremap <A-l> :tabnext<CR>
+nnoremap <A-Left> :-tabmove<CR>
+nnoremap <A-Right> :+tabmove<CR>
+
+" Terminal keymaps
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+" Open terminal
+nnoremap <C-t> : vsplit<CR><C-w><L>:terminal<CR>10<C-w><
+
+" NERDTree toggle
+nnoremap <C-f> : NERDTreeToggle<CR>
+
+" Go to definition (Coc)
+nnoremap gd :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
+
+" Coc autocomplete on TAB
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#_select_confirm() : "\<TAB>"
+
+" Telescope find files
+nnoremap <Space>ff :Telescope find_files<CR>
+
+" Plugin installation using vim-plug
+" Install vim-plug if not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/. vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'andweeb/presence.nvim'
+Plug 'mg979/vim-visual-multi'
+Plug 'andrewferrier/wrapping.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'olimorris/onedarkpro.nvim'
+Plug 'Raimondi/delimitMate'
+Plug 'clangd/coc-clangd'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+
+call plug#end()
+
+" Lua-based plugin configurations
+" These plugins require Lua configuration in Neovim
+lua << EOF
+-- Wrapping setup
+require('wrapping').setup()
+require('wrapping').soft_wrap_mode()
+
+-- Treesitter setup
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true
+    }
+}
+
+-- Telescope setup (builtin is already mapped above)
+local builtin = require('telescope.builtin')
+
+-- Render-markdown setup
+require('render-markdown').setup({})
+EOF
+
+" Color scheme
+colorscheme onedark_dark

@@ -4,6 +4,11 @@ bold = { family = "Hermit", style = "Bold" }
 italic = { family = "Hermit", style = "Italic" }
 bold_italic = { family = "Hermit", style = "BoldItalic" }
 
+# SIZE
+# laptop: 13
+# desktop: 11
+size = 13
+
 [mouse]
 hide_when_typing = true
 

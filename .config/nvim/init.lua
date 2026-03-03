@@ -9,6 +9,7 @@ vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.autowrite = true
 vim.opt.autoread = true
+vim.opt.foldmethod = indent
 
 -- Tabs to spaces
 vim.opt.tabstop = 8
@@ -22,6 +23,7 @@ vim.cmd('filetype plugin indent on')
 vim.cmd('set relativenumber')
 vim.cmd('autocmd BufWinEnter * NERDTreeMirror')
 vim.cmd('autocmd VimEnter * NERDTree | wincmd p')
+vim.cmd('set foldmethod=indent')
 
 -- tabs
 vim.keymap.set('n', '<A-k>', ':tabnew<CR>')
@@ -89,6 +91,16 @@ local plugins = {
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
         opts = {},
+    },
+    -- Vim latex
+    {
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+        -- VimTeX configuration goes here, e.g.
+        vim.g.vimtex_view_method = "zathura"
+        end
     }
 }
 local opts = {}
@@ -104,6 +116,9 @@ require'nvim-treesitter.configs'.setup {
         enable = true
     }
 }
+
+-- vimtex
+vim.keymap.set('n', '<Space>ll', ':VimtexCompile<CR>')
 
 -- Telescope
 -- vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>')

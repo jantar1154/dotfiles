@@ -9,11 +9,11 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:hack Bold 10
+font pango:hack 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -23,8 +23,14 @@ font pango:hack Bold 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# XINPUT
+# Comment out unused props, might break something
+
 # Enable tap-to-click on Macbook trackpad
-exec --no-startup-id xinput set-prop 11 306 1
+# exec --no-startup-id xinput set-prop 11 306 1
+
+# Enable natural scrolling on T480 trackpad
+exec --no-startup-id xinput set-prop 7 333 1
 
 # wallpaper
 exec --no-startup-id feh --bg-fill /usr/share/wallpapers/1755710631848029.jpg
@@ -47,15 +53,14 @@ exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status pkill -RTMIN+1 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Screen Brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+ -e 2
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- -e 2
 
 # Keyboard backlight brightness
 bindsym XF86KbdBrightnessUp exec --no-startup-id brightnessctl --device=smc::kbd_backlight set 10%+
@@ -69,7 +74,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -206,6 +211,6 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-	font pango:HackNerdFont 12
-        status_command i3status
+    font pango:HackNerdFont 16
+    status_command i3status-rs
 }
